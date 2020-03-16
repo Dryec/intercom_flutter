@@ -202,4 +202,11 @@
     NSLog(@"Failed to register for notifications %@", str);
 }
 
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(nonnull void (^)(UIBackgroundFetchResult))completionHandler {
+    if ([Intercom isIntercomPushNotification:userInfo]) {
+        [Intercom handleIntercomPushNotification:userInfo];
+    }
+    completionHandler(UIBackgroundFetchResultNoData);
+}
+
 @end
